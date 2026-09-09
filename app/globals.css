@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  /* Prevent any scroll-driven transform from ever introducing a horizontal
+     scrollbar. */
+  overflow-x: hidden;
+  background-color: #0a0a0a;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Subtle background grid texture used behind the dark hero/demo sections. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Blinking caret on the code panel's last line — a plain CSS animation
+   since it's decorative and continuous, not scroll-linked. Only runs when
+   the visitor hasn't asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .story-code-caret {
+    animation: story-caret-blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes story-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Respect reduced-motion at the CSS level too, for anything not driven by
+   GSAP (e.g. hover/focus transitions on interactive elements). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
