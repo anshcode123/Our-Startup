@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { getLenis, ScrollTrigger } from "@/lib/animations";
 import { scrollToSection } from "@/lib/scrollToSection";
 import { NAV_LINKS } from "@/lib/siteConfig";
+import Logo from "./Logo";
 
 /**
  * Fixed, blurred-on-scroll navigation. Reuses the shared Lenis instance
@@ -99,9 +100,10 @@ export default function Navigation() {
         <a
           href="#top"
           onClick={(e) => handleNavClick(e, "#top")}
-          className="text-sm font-medium tracking-wide text-white"
+          className="text-sm"
+          aria-label="Anshul.dev — home"
         >
-          ANSHUL.DEV
+          <Logo className="text-sm" />
         </a>
 
         <ul className="hidden items-center gap-8 text-sm md:flex">
@@ -110,8 +112,8 @@ export default function Navigation() {
               <a
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`transition-colors hover:text-white ${
-                  activeHref === link.href ? "text-white" : "text-white/60"
+                className={`link-underline transition-colors hover:text-white ${
+                  activeHref === link.href ? "text-accent" : "text-white/60"
                 }`}
               >
                 {link.label}

@@ -30,7 +30,7 @@ export default function ConnectionVisual({ stages = DEFAULT_STAGES }) {
             y1="0"
             x2="1"
             y2="100"
-            stroke="white"
+            stroke="var(--color-accent)"
             strokeWidth="2"
             strokeDasharray="100"
             strokeDashoffset="100"
@@ -41,7 +41,7 @@ export default function ConnectionVisual({ stages = DEFAULT_STAGES }) {
             key={stage}
             className="story-connection-node relative flex flex-col items-center gap-2 opacity-30"
           >
-            <span className="story-connection-dot h-2.5 w-2.5 rounded-full bg-white/30" />
+            <span className="story-connection-dot h-2.5 w-2.5 rounded-full bg-accent/60" />
             <span className="text-xs text-white/50">{stage}</span>
           </div>
         ))}

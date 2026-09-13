@@ -9,7 +9,7 @@ export default function IdeaVisual() {
       <div className="relative flex h-24 w-24 items-center justify-center">
         <span className="story-idea-ring story-idea-ring-1 absolute inset-0 rounded-full border border-white/20" />
         <span className="story-idea-ring story-idea-ring-2 absolute inset-0 rounded-full border border-white/10" />
-        <span className="story-idea-core relative h-3.5 w-3.5 rounded-full bg-white shadow-[0_0_40px_10px_rgba(255,255,255,0.35)]" />
+        <span className="story-idea-core relative h-3.5 w-3.5 rounded-full bg-accent shadow-[0_0_40px_10px_color-mix(in_srgb,var(--color-accent)_45%,transparent)]" />
       </div>
       <div className="story-idea-label rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs tracking-wide text-white/50">
         An idea

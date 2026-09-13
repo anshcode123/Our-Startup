@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "@/lib/animations";
+import { gsap, prefersReducedMotion } from "@/lib/animations";
 
 const SERVICES = [
   {
@@ -39,6 +39,14 @@ export default function Services() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".service-card");
+      const reduced = prefersReducedMotion();
+
+      if (reduced) {
+        // Skip the scroll-driven reveal and drift entirely — cards are
+        // simply visible, per prefers-reduced-motion.
+        gsap.set(cards, { opacity: 1, y: 0 });
+        return;
+      }
 
       gsap.set(cards, { opacity: 0, y: 40 });
       cards.forEach((card) => {
@@ -79,7 +87,7 @@ export default function Services() {
     <section id="services" ref={sectionRef} className="relative bg-ink px-6 py-32">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/40">Services</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-white/50">Services</p>
           <h2 className="mt-3 text-4xl text-white sm:text-5xl">What we build.</h2>
           <p className="mt-4 text-white/50">
             Digital products designed around your business, your users, and your goals.
@@ -90,11 +98,11 @@ export default function Services() {
           {SERVICES.map((service) => (
             <div
               key={service.number}
-              className="service-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-white/20"
+              className="service-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-white/20"
             >
               <span
                 aria-hidden="true"
-                className="service-number pointer-events-none absolute right-6 top-4 text-6xl font-light text-white/[0.04]"
+                className="service-number pointer-events-none absolute right-6 top-4 text-6xl font-light text-accent/[0.08]"
               >
                 {service.number}
               </span>
@@ -104,7 +112,7 @@ export default function Services() {
                 {service.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/40"
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/50"
                   >
                     {item}
                   </li>

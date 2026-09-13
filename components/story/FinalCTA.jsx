@@ -1,8 +1,9 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "@/lib/animations";
+import { gsap, prefersReducedMotion } from "@/lib/animations";
 import { scrollToSection } from "@/lib/scrollToSection";
+import MagneticButton from "@/components/ui/MagneticButton";
 import RocketVisual from "./RocketVisual";
 
 /**
@@ -17,6 +18,12 @@ export default function FinalCTA() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      if (prefersReducedMotion()) {
+        gsap.set(".story-final-item", { opacity: 1, y: 0 });
+        gsap.set(".story-rocket", { opacity: 1, y: 0 });
+        return;
+      }
+
       gsap.set(".story-final-item", { opacity: 0, y: 24 });
       gsap.to(".story-final-item", {
         opacity: 1,
@@ -57,14 +64,17 @@ export default function FinalCTA() {
       ref={sectionRef}
       className="bg-grid relative flex min-h-screen flex-col items-center justify-center gap-6 overflow-hidden border-t border-white/5 bg-ink px-6 py-32 text-center"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-10 flex h-56 justify-center opacity-60">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-6 flex h-64 scale-125 justify-center opacity-90 sm:top-2"
+      >
         <RocketVisual />
       </div>
 
-      <p className="story-final-item relative text-xs uppercase tracking-[0.2em] text-white/40">
+      <p className="story-final-item relative text-xs uppercase tracking-[0.2em] text-white/50">
         Have an idea?
       </p>
-      <h2 className="story-final-item relative max-w-2xl text-4xl leading-tight text-white sm:text-5xl">
+      <h2 className="story-final-item relative max-w-2xl text-4xl leading-tight text-white sm:text-5xl md:text-6xl">
         Let&apos;s build it.
       </h2>
       <p className="story-final-item relative max-w-md text-white/50">
@@ -73,16 +83,16 @@ export default function FinalCTA() {
       </p>
 
       <div className="story-final-item relative flex flex-col items-center gap-4 sm:flex-row">
-        <a
+        <MagneticButton
           href="#contact"
           onClick={(e) => handleClick(e, "#contact")}
-          className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-transform hover:-translate-y-0.5"
+          className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--color-accent),0_10px_30px_-8px_var(--color-accent)]"
         >
           Start a Project
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
             →
           </span>
-        </a>
+        </MagneticButton>
         <a
           href="#contact"
           onClick={(e) => handleClick(e, "#contact")}

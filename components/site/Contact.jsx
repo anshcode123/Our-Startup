@@ -1,17 +1,21 @@
 import { CONTACT } from "@/lib/siteConfig";
 
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", href: CONTACT.linkedin },
+  { label: "GitHub", href: CONTACT.github },
+  { label: "Instagram", href: CONTACT.instagram },
+].filter((social) => social.href);
+
 /**
  * Direct contact links only — no backend form (see lib/siteConfig.js for
  * where to fill in real details as they become available). Social links
  * only render when a real URL has been provided.
  */
 export default function Contact() {
-  const hasSocials = Boolean(CONTACT.instagram || CONTACT.linkedin);
-
   return (
     <section id="contact" className="relative border-t border-white/5 bg-ink px-6 py-32">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-white/40">Contact</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-white/50">Contact</p>
         <h2 className="mt-3 text-4xl text-white sm:text-5xl">Let&apos;s talk.</h2>
         <p className="mt-4 text-white/50">
           Reach out directly — we&apos;ll get back to you as soon as we can.
@@ -37,28 +41,19 @@ export default function Contact() {
           )}
         </div>
 
-        {hasSocials && (
-          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-white/40">
-            {CONTACT.instagram && (
+        {SOCIAL_LINKS.length > 0 && (
+          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-white/50">
+            {SOCIAL_LINKS.map((social) => (
               <a
-                href={CONTACT.instagram}
+                key={social.label}
+                href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-white"
+                className="link-underline transition-colors hover:text-white"
               >
-                Instagram
+                {social.label}
               </a>
-            )}
-            {CONTACT.linkedin && (
-              <a
-                href={CONTACT.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-white"
-              >
-                LinkedIn
-              </a>
-            )}
+            ))}
           </div>
         )}
       </div>

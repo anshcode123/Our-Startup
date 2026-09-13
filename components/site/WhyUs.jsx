@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "@/lib/animations";
+import { gsap, prefersReducedMotion } from "@/lib/animations";
 
 const PRINCIPLES = [
   { title: "Strategy First", description: "We understand the problem before we start building." },
@@ -16,6 +16,12 @@ export default function WhyUs() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".principle-card");
+
+      if (prefersReducedMotion()) {
+        gsap.set(cards, { opacity: 1, y: 0 });
+        return;
+      }
+
       gsap.set(cards, { opacity: 0, y: 30 });
       gsap.to(cards, {
         opacity: 1,
@@ -42,7 +48,7 @@ export default function WhyUs() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="max-w-xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/40">Why Anshul.dev</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-white/50">Why Anshul.dev</p>
           <h2 className="mt-3 text-4xl text-white sm:text-5xl">Built with purpose.</h2>
         </div>
 
@@ -50,7 +56,7 @@ export default function WhyUs() {
           {PRINCIPLES.map((principle) => (
             <div
               key={principle.title}
-              className="principle-card rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+              className="principle-card rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20"
             >
               <h3 className="text-white">{principle.title}</h3>
               <p className="mt-2 text-sm text-white/50">{principle.description}</p>

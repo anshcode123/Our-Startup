@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/animations";
 import { scrollToSection } from "@/lib/scrollToSection";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 /**
  * The real homepage hero. Sits directly above <CinematicStage> in normal
@@ -45,9 +46,9 @@ export default function Hero() {
       ref={sectionRef}
       className="bg-grid relative flex h-screen flex-col items-center justify-center gap-6 bg-ink px-6 text-center"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.07),transparent_60%)]" />
+      <div className="bg-accent-glow bg-noise pointer-events-none absolute inset-0" />
 
-      <p className="hero-fade relative text-xs uppercase tracking-[0.2em] text-white/40">
+      <p className="hero-fade relative text-xs uppercase tracking-[0.2em] text-white/50">
         Anshul.dev — software development studio
       </p>
 
@@ -61,16 +62,16 @@ export default function Hero() {
       </p>
 
       <div className="hero-fade relative flex flex-col items-center gap-4 sm:flex-row">
-        <a
+        <MagneticButton
           href="#contact"
           onClick={(e) => handleClick(e, "#contact")}
-          className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-transform hover:-translate-y-0.5"
+          className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--color-accent),0_10px_30px_-8px_var(--color-accent)]"
         >
           Start a Project
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
             →
           </span>
-        </a>
+        </MagneticButton>
         <a
           href="#work"
           onClick={(e) => handleClick(e, "#work")}
@@ -80,7 +81,7 @@ export default function Hero() {
         </a>
       </div>
 
-      <span className="hero-fade absolute bottom-8 text-xs uppercase tracking-widest text-white/30">
+      <span className="hero-fade absolute bottom-8 text-xs uppercase tracking-widest text-white/50">
         Scroll
       </span>
     </section>

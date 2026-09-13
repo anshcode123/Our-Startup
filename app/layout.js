@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { SmoothScroll, ScrollProgress } from "@/components/scroll";
+import CustomCursor from "@/components/ui/CustomCursor";
+import { SITE_URL } from "@/lib/siteConfig";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,11 +12,7 @@ const inter = Inter({
 
 const SITE_TITLE = "Anshul.dev — We Build Digital Products";
 const SITE_DESCRIPTION =
-  "Anshul.dev designs and develops modern websites, mobile apps, and custom software for businesses.";
-
-// TODO: replace with the real production domain once one exists — this
-// only affects how relative URLs in metadata (e.g. Open Graph) resolve.
-const SITE_URL = "https://anshul.dev";
+  "Anshul.dev designs and develops modern websites, mobile apps, and custom software for businesses ready to move forward.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -23,17 +21,24 @@ export const metadata = {
     template: "%s — Anshul.dev",
   },
   description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "Anshul.dev",
     type: "website",
+    // Image itself comes from app/opengraph-image.jsx (Next's file-based
+    // convention adds it automatically) — a generated brand/tagline card,
+    // not a fake screenshot or stats graphic.
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    // Image comes from app/twitter-image.jsx, same convention as above.
   },
 };
 
@@ -43,6 +48,7 @@ export default function RootLayout({ children }) {
       <body>
         <SmoothScroll>
           <ScrollProgress />
+          <CustomCursor />
           {children}
         </SmoothScroll>
       </body>

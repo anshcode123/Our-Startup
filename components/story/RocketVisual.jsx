@@ -1,21 +1,33 @@
+import { useId } from "react";
+
 /**
  * Section 11 — Launch. A clean, geometric rocket built from SVG paths and
  * gradients — a metaphor for shipping the product, not a cartoon.
+ *
+ * This component is mounted twice on the homepage (once inside the pinned
+ * cinematic stage, once standalone in <FinalCTA>), so the gradient id is
+ * generated per-instance with useId() — a hardcoded id here would collide
+ * across the two instances and make `url(#id)` unreliable. No "use client"
+ * directive here: useId() works in Server Components too, and this
+ * component is only ever rendered inside parents that already declare
+ * "use client" themselves.
  */
 export default function RocketVisual() {
+  const gradientId = useId();
+
   return (
     <div className="story-rocket pointer-events-none absolute inset-0 flex items-center justify-center opacity-0">
       <div className="story-rocket-body relative flex flex-col items-center">
         <svg width="72" height="140" viewBox="0 0 72 140" fill="none">
           <defs>
-            <linearGradient id="rocketBody" x1="16" y1="2" x2="56" y2="112" gradientUnits="userSpaceOnUse">
+            <linearGradient id={gradientId} x1="16" y1="2" x2="56" y2="112" gradientUnits="userSpaceOnUse">
               <stop stopColor="#f5f5f3" />
               <stop offset="1" stopColor="#9a9a97" />
             </linearGradient>
           </defs>
           <path
             d="M36 2C50 22 56 52 56 84C56 96 48 106 36 112C24 106 16 96 16 84C16 52 22 22 36 2Z"
-            fill="url(#rocketBody)"
+            fill={`url(#${gradientId})`}
             stroke="rgba(255,255,255,0.25)"
           />
           <path d="M16 84L4 108H18L16 84Z" fill="rgba(255,255,255,0.12)" />
@@ -25,10 +37,11 @@ export default function RocketVisual() {
             cy="58"
             r="9"
             fill="rgba(10,10,10,0.55)"
-            stroke="rgba(255,255,255,0.3)"
+            stroke="var(--color-accent)"
+            strokeOpacity="0.5"
           />
         </svg>
-        <div className="story-rocket-flame -mt-1.5 h-10 w-3 rounded-full bg-gradient-to-b from-white/70 to-transparent blur-[2px]" />
+        <div className="story-rocket-flame -mt-1.5 h-10 w-3 rounded-full bg-gradient-to-b from-accent/80 to-transparent blur-[2px]" />
       </div>
     </div>
   );

@@ -2,10 +2,12 @@
 
 import { NAV_LINKS, CONTACT } from "@/lib/siteConfig";
 import { scrollToSection } from "@/lib/scrollToSection";
+import Logo from "./Logo";
 
 const SOCIALS = [
-  { label: "Instagram", href: CONTACT.instagram },
   { label: "LinkedIn", href: CONTACT.linkedin },
+  { label: "GitHub", href: CONTACT.github },
+  { label: "Instagram", href: CONTACT.instagram },
   { label: "WhatsApp", href: CONTACT.whatsapp },
   { label: "Email", href: CONTACT.email ? `mailto:${CONTACT.email}` : "" },
 ].filter((social) => social.href);
@@ -20,8 +22,8 @@ export default function Footer() {
     <footer className="relative border-t border-white/10 bg-ink px-6 py-16">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div className="max-w-xs">
-          <p className="text-sm font-medium tracking-wide text-white">ANSHUL.DEV</p>
-          <p className="mt-3 text-sm text-white/40">
+          <Logo className="text-sm" />
+          <p className="mt-3 text-sm text-white/50">
             Building digital products for businesses ready to move forward.
           </p>
         </div>
@@ -33,7 +35,7 @@ export default function Footer() {
                 <a
                   href={link.href}
                   onClick={(e) => handleClick(e, link.href)}
-                  className="transition-colors hover:text-white"
+                  className="link-underline transition-colors hover:text-white"
                 >
                   {link.label}
                 </a>
@@ -50,7 +52,7 @@ export default function Footer() {
                   href={social.href}
                   target={social.label === "Email" ? undefined : "_blank"}
                   rel={social.label === "Email" ? undefined : "noopener noreferrer"}
-                  className="transition-colors hover:text-white"
+                  className="link-underline transition-colors hover:text-white"
                 >
                   {social.label}
                 </a>
@@ -60,7 +62,13 @@ export default function Footer() {
         )}
       </div>
 
-      <p className="mx-auto mt-12 max-w-6xl text-xs text-white/25">
+      {/* new Date() at render time can legitimately differ between when this
+          page was statically generated/server-rendered and when the
+          browser hydrates it (e.g. built in December, viewed in January) —
+          suppressHydrationWarning is React/Next's documented escape hatch
+          for exactly this "correct on the client, may lag on the server"
+          case, rather than a way to silence a real bug. */}
+      <p className="mx-auto mt-12 max-w-6xl text-xs text-white/50" suppressHydrationWarning>
         © {new Date().getFullYear()} Anshul.dev
       </p>
     </footer>

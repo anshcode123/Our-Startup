@@ -1,8 +1,9 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "@/lib/animations";
+import { gsap, prefersReducedMotion } from "@/lib/animations";
 import { setConnectionInitialState, addConnectionStage } from "@/lib/animations/connectionAnimation";
+import { showStoryElementsAtRest } from "@/lib/animations/storyAnimations";
 import { ConnectionVisual } from "@/components/story";
 
 const STEPS = [
@@ -31,6 +32,15 @@ export default function Process() {
     if (!root) return undefined;
 
     const ctx = gsap.context(() => {
+      if (prefersReducedMotion()) {
+        // Show the finished diagram at rest — line fully drawn, every
+        // stage lit — instead of running the scroll-scrubbed draw-on.
+        // Reuses the same rest-state helper the reduced-motion cinematic
+        // story fallback (SimpleStory) uses.
+        showStoryElementsAtRest(gsap, root);
+        return;
+      }
+
       setConnectionInitialState(gsap, root);
 
       const tl = gsap.timeline({
@@ -52,7 +62,7 @@ export default function Process() {
     <section id="process" ref={sectionRef} className="relative border-t border-white/5 bg-ink px-6 py-32">
       <div className="mx-auto max-w-5xl">
         <div className="max-w-xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/40">Process</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-white/50">Process</p>
           <h2 className="mt-3 text-4xl text-white sm:text-5xl">From idea to launch.</h2>
         </div>
 
@@ -64,7 +74,7 @@ export default function Process() {
           <ol className="flex flex-col gap-8">
             {STEPS.map((step, i) => (
               <li key={step.title} className="flex gap-4">
-                <span className="pt-0.5 text-sm text-white/30">{String(i + 1).padStart(2, "0")}</span>
+                <span className="pt-0.5 text-sm text-white/50">{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="text-white">{step.title}</h3>
                   <p className="mt-1 text-sm text-white/50">{step.description}</p>
