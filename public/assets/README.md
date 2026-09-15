@@ -1,6 +1,6 @@
 # public/assets
 
-Structure for real Anshul.dev assets, ready for files to be dropped in as
+Structure for real AKIVRO.dev assets, ready for files to be dropped in as
 they become available. Nothing here has been invented — see each
 subfolder's note for what it's for and how it plugs into the site.
 
@@ -15,7 +15,7 @@ public/assets/
 
 ## How to wire a real asset in once it exists
 
-- **Logo** — replace the "ANSHUL.DEV" text in `components/site/Navigation.jsx`
+- **Logo** — replace the "AKIVRO.dev" text in `components/site/Navigation.jsx`
   and `components/site/Footer.jsx` with an `<Image src="/assets/brand/logo.svg" .../>`.
 - **Favicon** — `app/icon.svg` is the current placeholder mark (Next's
   file-based icon convention). Replace that file directly, or add

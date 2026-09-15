@@ -2,7 +2,7 @@
   "name": "anshul-dev",
   "version": "0.1.0",
   "private": true,
-  "description": "Anshul.dev — marketing website foundation with the reusable Lenis + GSAP ScrollTrigger scroll-animation engine (Phase 1).",
+  "description": "AKIVRO.dev — marketing website foundation with the reusable Lenis + GSAP ScrollTrigger scroll-animation engine (Phase 1).",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

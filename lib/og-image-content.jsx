@@ -42,8 +42,15 @@ export function OgImageContent() {
         />
       </div>
 
-      <div style={{ display: "flex", fontSize: 72, fontWeight: 600, letterSpacing: -2 }}>
-        Anshul.dev
+      <div
+        style={{
+          display: "flex",
+          fontSize: 72,
+          fontWeight: 600,
+          letterSpacing: -2,
+        }}
+      >
+        AKIVRO.dev
       </div>
 
       <div

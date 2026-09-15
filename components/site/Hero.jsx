@@ -49,7 +49,7 @@ export default function Hero() {
       <div className="bg-accent-glow bg-noise pointer-events-none absolute inset-0" />
 
       <p className="hero-fade relative text-xs uppercase tracking-[0.2em] text-white/50">
-        Anshul.dev — software development studio
+        AKIVRO.dev — software development studio
       </p>
 
       <h1 className="hero-fade relative max-w-3xl text-5xl leading-[1.05] text-white sm:text-6xl md:text-7xl">
@@ -57,8 +57,8 @@ export default function Hero() {
       </h1>
 
       <p className="hero-fade relative max-w-xl text-base text-white/50 sm:text-lg">
-        We design and develop modern websites, mobile apps, and custom
-        software for businesses ready to move forward.
+        We design and develop modern websites, mobile apps, and custom software
+        for businesses ready to move forward.
       </p>
 
       <div className="hero-fade relative flex flex-col items-center gap-4 sm:flex-row">
@@ -68,7 +68,10 @@ export default function Hero() {
           className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow duration-300 hover:shadow-[0_0_0_1px_var(--color-accent),0_10px_30px_-8px_var(--color-accent)]"
         >
           Start a Project
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+          <span
+            aria-hidden="true"
+            className="transition-transform group-hover:translate-x-0.5"
+          >
             →
           </span>
         </MagneticButton>

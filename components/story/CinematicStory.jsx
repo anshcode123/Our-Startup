@@ -31,9 +31,9 @@ export default function CinematicStory() {
       {/* The animated stage is decorative scroll choreography; this states
           the same story in plain text for screen readers and no-JS. */}
       <p className="sr-only">
-        Anshul.dev turns an idea into a finished digital product: idea,
-        design, interface, code, development, mobile app, website, software,
-        testing, and launch.
+        AKIVRO.dev turns an idea into a finished digital product: idea, design,
+        interface, code, development, mobile app, website, software, testing,
+        and launch.
       </p>
 
       {reducedMotion === false ? <CinematicStage /> : <SimpleStory />}

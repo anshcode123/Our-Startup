@@ -1,8 +1,8 @@
-# Anshul.dev — Phase 1: Scroll Engine Foundation
+# AKIVRO.dev — Phase 1: Scroll Engine Foundation
 
 A fresh Next.js (App Router, JavaScript) project containing the reusable
 Lenis + GSAP ScrollTrigger scroll-animation engine that later phases will
-build the cinematic Anshul.dev story on top of. This phase ships a temporary
+build the cinematic AKIVRO.dev story on top of. This phase ships a temporary
 demo page only — not the final homepage.
 
 ## Getting started
@@ -131,7 +131,7 @@ Graph, Twitter card); `app/icon.svg` is a plain generated favicon mark
 actual brand photography.
 
 Known gaps: not run in a real browser; `CONTACT.email` is a reasonable
-placeholder (`hello@anshul.dev`) rather than a confirmed real inbox —
+placeholder (`hello@AKIVRO.dev`) rather than a confirmed real inbox —
 swap it in `lib/siteConfig.js`; social links stay hidden until filled in
 the same file.
 
@@ -204,7 +204,7 @@ comfortably high by eye but hasn't been measured with a contrast tool.
 ## Phase 5 — real assets, portfolio & brand integration
 
 No real brand/project assets were ever supplied in this project, so
-nothing was invented — this phase focused on making the *structure* ready
+nothing was invented — this phase focused on making the _structure_ ready
 for them and fixing issues found while reviewing Phases 1–4.
 
 - **Fixed a real bug**: `components/story/SimpleStory.jsx` spread step
@@ -214,7 +214,7 @@ for them and fixing issues found while reviewing Phases 1–4.
   `key="idea"` (etc.) attribute; the `STEPS` array's unused third entry
   ("ui", never actually rendered) was dropped as dead data in the same
   pass. `components/site/Work.jsx`'s existing `<ProjectCard key={project.id}
-  {...project} />` was checked too — safe, since `project` objects don't
+{...project} />` was checked too — safe, since `project` objects don't
   carry a `key` field themselves.
 - **Portfolio data separated from presentation**: `lib/content/projects.js`
   now holds the `PROJECTS` array (still empty — no real projects supplied)
@@ -226,13 +226,13 @@ for them and fixing issues found while reviewing Phases 1–4.
   case where a real project with no `link` would have still shown a
   misleading "View project →".
 - **Brand mark centralized**: new `components/site/Logo.jsx` — still the
-  same "ANSHUL.DEV" text wordmark used since Phase 3 (no real logo file
+  same "AKIVRO.dev" text wordmark used since Phase 3 (no real logo file
   exists to integrate), but now defined once and used by both Navigation
   and Footer, so dropping in a real `/assets/brand/logo.svg` later is a
   one-file change. See the component's doc comment for exactly how.
 - **Open Graph / Twitter image**: added `app/opengraph-image.jsx` and
   `app/twitter-image.jsx` using Next's built-in `next/og` image
-  generation — a real, honest 1200×630 card with just "Anshul.dev" and
+  generation — a real, honest 1200×630 card with just "AKIVRO.dev" and
   "Software Development Studio" (matching `lib/og-image-content.jsx`), no
   invented stats or client logos. `public/assets/og/` still exists if a
   designed static image should replace the generated one later. Twitter
@@ -355,7 +355,7 @@ final report for exactly why, and what to run yourself before deploying).
   that resolves every local `import ... from` (relative and `@/` alias)
   across every `.js`/`.jsx` file in the project and confirms the target
   file exists — all resolved cleanly. A second pass cross-checked every
-  *named* and *default* import against the actual exports in its target
+  _named_ and _default_ import against the actual exports in its target
   file — all matched. A third pass scanned every `.map()` call for a
   `key` prop — one flagged, checked by hand, and confirmed a false
   positive (it maps to `ScrollTrigger.create()` calls, not JSX, so no key
@@ -376,13 +376,13 @@ final report for exactly why, and what to run yourself before deploying).
   live `src=` pointing at a file that doesn't exist, so there's nothing
   to 404 on today.
 - **Tailwind production-purge check**: reviewed every dynamic
-  `className={\`...\`}` template literal in the project (6 total) — all
-  either branch between two complete, static class strings, or forward a
-  complete static string through a prop; none construct a partial class
-  name from a variable (the classic pattern that silently drops styles
-  in a production build). Confirmed `tailwind.config.js`'s `content`
-  globs cover every directory with JSX (`app/`, `components/`, `lib/`).
-- **Domain / deployment**: confirmed `SITE_URL` (`https://anshul.dev`,
+  `className={\`...\`}`template literal in the project (6 total) — all
+either branch between two complete, static class strings, or forward a
+complete static string through a prop; none construct a partial class
+name from a variable (the classic pattern that silently drops styles
+in a production build). Confirmed`tailwind.config.js`'s `content`
+globs cover every directory with JSX (`app/`, `components/`, `lib/`).
+- **Domain / deployment**: confirmed `SITE_URL` (`https://AKIVRO.dev`,
   centralized in `lib/siteConfig.js`) is the intended production domain
   as specified, already documented in that file as "DNS/deployment may
   not be fully pointed at it yet." Made no DNS/Vercel changes — none are

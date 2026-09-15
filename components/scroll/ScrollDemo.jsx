@@ -261,7 +261,7 @@ function CombinedTimelineDemo() {
           tl.fromTo(
             boxRef.current,
             { opacity: 0, y: 80, scale: 0.85, rotate: -6 },
-            { opacity: 1, y: 0, scale: 1, rotate: 0, ease: "none" }
+            { opacity: 1, y: 0, scale: 1, rotate: 0, ease: "none" },
           );
         },
       });
@@ -319,7 +319,7 @@ function SectionTransitionDemo() {
         secondRef.current,
         { opacity: 0, scale: 1.05, y: 40 },
         { opacity: 1, scale: 1, y: 0, ease: "none" },
-        "<"
+        "<",
       );
     }, wrapRef);
 
@@ -355,7 +355,9 @@ export default function ScrollDemo() {
   return (
     <main className="bg-ink text-paper">
       <header className="bg-grid relative flex h-screen flex-col items-center justify-center gap-6 px-6 text-center">
-        <p className="text-sm text-white/40">Anshul.dev — scroll engine foundation</p>
+        <p className="text-sm text-white/40">
+          AKIVRO.dev — scroll engine foundation
+        </p>
         <h1 className="max-w-2xl text-4xl leading-tight sm:text-5xl">
           Scroll to test the animation system
         </h1>
@@ -376,7 +378,7 @@ export default function ScrollDemo() {
       <footer className="flex flex-col items-center gap-2 px-6 py-32 text-center">
         <p className="text-white/40">End of Phase 1 demo</p>
         <p className="max-w-sm text-sm text-white/25">
-          The real Anshul.dev story — idea to launch — is built on this
+          The real AKIVRO.dev story — idea to launch — is built on this
           foundation in a later phase.
         </p>
       </footer>

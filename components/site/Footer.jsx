@@ -30,17 +30,19 @@ export default function Footer() {
 
         <nav aria-label="Footer">
           <ul className="flex flex-col gap-2 text-sm text-white/50">
-            {[...NAV_LINKS, { label: "Contact", href: "#contact" }].map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
-                  className="link-underline transition-colors hover:text-white"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {[...NAV_LINKS, { label: "Contact", href: "#contact" }].map(
+              (link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleClick(e, link.href)}
+                    className="link-underline transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
         </nav>
 
@@ -51,7 +53,9 @@ export default function Footer() {
                 <a
                   href={social.href}
                   target={social.label === "Email" ? undefined : "_blank"}
-                  rel={social.label === "Email" ? undefined : "noopener noreferrer"}
+                  rel={
+                    social.label === "Email" ? undefined : "noopener noreferrer"
+                  }
                   className="link-underline transition-colors hover:text-white"
                 >
                   {social.label}
@@ -68,8 +72,11 @@ export default function Footer() {
           suppressHydrationWarning is React/Next's documented escape hatch
           for exactly this "correct on the client, may lag on the server"
           case, rather than a way to silence a real bug. */}
-      <p className="mx-auto mt-12 max-w-6xl text-xs text-white/50" suppressHydrationWarning>
-        © {new Date().getFullYear()} Anshul.dev
+      <p
+        className="mx-auto mt-12 max-w-6xl text-xs text-white/50"
+        suppressHydrationWarning
+      >
+        © {new Date().getFullYear()} AKIVRO.dev
       </p>
     </footer>
   );

@@ -7,8 +7,12 @@
  *
  * To swap in a real logo:
  *   import Image from "next/image";
- *   <Image src="/assets/brand/logo.svg" alt="Anshul.dev" width={120} height={24} priority={props.priority} />
+ *   <Image src="/assets/brand/logo.svg" alt="AKIVRO.dev" width={120} height={24} priority={props.priority} />
  */
 export default function Logo({ className = "" }) {
-  return <span className={`font-medium tracking-wide text-white ${className}`}>ANSHUL.DEV</span>;
+  return (
+    <span className={`font-medium tracking-wide text-white ${className}`}>
+      AKIVRO.dev
+    </span>
+  );
 }

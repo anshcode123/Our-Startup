@@ -10,15 +10,15 @@ const inter = Inter({
   display: "swap",
 });
 
-const SITE_TITLE = "Anshul.dev — We Build Digital Products";
+const SITE_TITLE = "AKIVRO.dev — We Build Digital Products";
 const SITE_DESCRIPTION =
-  "Anshul.dev designs and develops modern websites, mobile apps, and custom software for businesses ready to move forward.";
+  "AKIVRO.dev designs and develops modern websites, mobile apps, and custom software for businesses ready to move forward.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: "%s — Anshul.dev",
+    template: "%s — AKIVRO.dev",
   },
   description: SITE_DESCRIPTION,
   alternates: {
@@ -28,7 +28,7 @@ export const metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    siteName: "Anshul.dev",
+    siteName: "AKIVRO.dev",
     type: "website",
     // Image itself comes from app/opengraph-image.jsx (Next's file-based
     // convention adds it automatically) — a generated brand/tagline card,

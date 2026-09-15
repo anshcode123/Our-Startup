@@ -1,7 +1,7 @@
 import { ScrollDemo } from "@/components/scroll";
 
 export const metadata = {
-  title: "Scroll engine demo — Anshul.dev",
+  title: "Scroll engine demo — AKIVRO.dev",
 };
 
 export default function DemoPage() {

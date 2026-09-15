@@ -93,7 +93,9 @@ export default function Navigation() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "border-b border-white/10 bg-ink/80 backdrop-blur-md" : "bg-transparent"
+        scrolled
+          ? "border-b border-white/10 bg-ink/80 backdrop-blur-md"
+          : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -101,7 +103,7 @@ export default function Navigation() {
           href="#top"
           onClick={(e) => handleNavClick(e, "#top")}
           className="text-sm"
-          aria-label="Anshul.dev — home"
+          aria-label="AKIVRO.dev — home"
         >
           <Logo className="text-sm" />
         </a>
@@ -128,7 +130,10 @@ export default function Navigation() {
           className="group hidden items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black md:inline-flex"
         >
           Let&apos;s Talk
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+          <span
+            aria-hidden="true"
+            className="transition-transform group-hover:translate-x-0.5"
+          >
             →
           </span>
         </a>
@@ -147,7 +152,10 @@ export default function Navigation() {
       </nav>
 
       {menuOpen && (
-        <div id="mobile-menu" className="border-t border-white/10 bg-ink px-6 py-6 md:hidden">
+        <div
+          id="mobile-menu"
+          className="border-t border-white/10 bg-ink px-6 py-6 md:hidden"
+        >
           <ul className="flex flex-col gap-1 text-base text-white/80">
             {mobileLinks.map((link, i) => (
               <li key={link.href}>

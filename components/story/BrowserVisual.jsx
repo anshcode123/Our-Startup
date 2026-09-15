@@ -14,11 +14,16 @@ export default function BrowserVisual({ children }) {
             <span className="h-2 w-2 rounded-full bg-white/20" />
           </div>
           <span className="flex h-4 max-w-xs flex-1 items-center rounded bg-white/5 px-2 text-[9px] text-white/25">
-            anshul.dev
+            AKIVRO.dev
           </span>
         </div>
-        <div className="relative h-[calc(100%-2rem)] w-full overflow-hidden">{children}</div>
-        <div aria-hidden="true" className="device-reflection pointer-events-none absolute inset-0 z-10" />
+        <div className="relative h-[calc(100%-2rem)] w-full overflow-hidden">
+          {children}
+        </div>
+        <div
+          aria-hidden="true"
+          className="device-reflection pointer-events-none absolute inset-0 z-10"
+        />
       </div>
     </div>
   );
