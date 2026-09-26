@@ -21,7 +21,8 @@ npm-debug.log*
 # any env files, but this should never accidentally get committed if one
 # is added later).
 .env
-.env*.local
+.env.*
+!.env.example
 
 # vercel
 .vercel
