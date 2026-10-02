@@ -1,23 +1,60 @@
-# AKIVRO.dev — Phase 1: Scroll Engine Foundation
+# AKIVRO.dev — Frontend & Backend Architecture
 
-A fresh Next.js (App Router, JavaScript) project containing the reusable
-Lenis + GSAP ScrollTrigger scroll-animation engine that later phases will
-build the cinematic AKIVRO.dev story on top of. This phase ships a temporary
-demo page only — not the final homepage.
+This repository is cleanly separated into two workspaces:
+
+```text
+Anshul.dev/
+├── frontend/          # Public Next.js marketing website & Lenis + GSAP ScrollTrigger engine
+│   ├── app/
+│   ├── components/
+│   ├── config/
+│   ├── hooks/
+│   ├── lib/
+│   ├── public/
+│   ├── styles/
+│   ├── .env.example
+│   ├── .eslintrc.json
+│   ├── package.json
+│   ├── next.config.js
+│   ├── jsconfig.json
+│   ├── tailwind.config.js
+│   └── postcss.config.js
+│
+├── backend/           # Express.js + PostgreSQL + Prisma ORM + Cloudinary API server
+│   ├── server.js
+│   ├── routes/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── lib/
+│   ├── prisma/
+│   ├── .env.example
+│   ├── package.json
+│   └── README.md
+│
+├── .gitignore
+├── README.md
+└── package.json
+```
 
 ## Getting started
 
-This sandbox has no network access, so dependencies could not be installed
-or the dev server started here. On your machine, from this folder:
+### Frontend (`frontend/`)
 
 ```bash
+cd frontend
 npm install
 npm run dev
 ```
 
+Or from the repository root:
+
+```bash
+npm run frontend
+```
+
 Then open http://localhost:3000.
 
-To temporarily see ScrollTrigger's debug markers during development, run:
+To temporarily see ScrollTrigger's debug markers during development, run inside `frontend/`:
 
 ```bash
 NEXT_PUBLIC_SCROLL_DEBUG=true npm run dev
@@ -401,3 +438,19 @@ Still not possible in this sandbox: an actual `npm run build`/`npm run
 lint` run, a real browser/device QA pass, or anything involving Vercel/DNS
 (no network, no deployment access). See the final chat report for the
 complete, explicit list of what to verify yourself before launch.
+
+## Phase 8 — Product CMS & Admin Portal
+
+Phase 8 introduces a secure Product CMS & Admin Portal backed by **Node.js + Express.js + PostgreSQL + Prisma ORM + Cloudinary + HTTP-only JWT authentication**, cleanly separated across `frontend/` and `backend/`.
+
+- **Database Schema (`backend/prisma/schema.prisma`)**:
+  - `AdminUser` (`id`, `email`, `passwordHash`, `createdAt`, `updatedAt`)
+  - `Product` (`id`, `title`, `slug`, `shortDescription`, `fullDescription`, `category`, `status` [`DRAFT` | `PUBLISHED`], `featured`, `thumbnailUrl`, `images`, `technologies`, `liveUrl`, `githubUrl`, `createdAt`, `updatedAt`)
+- **Backend API (`backend/server.js`)**:
+  - Authentication: `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`
+  - Public Products: `GET /api/products`, `GET /api/products/:slug`
+  - Admin Protected CRUD: `GET /api/products?all=true`, `POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`, `PATCH /api/products/:id/publish`, `PATCH /api/products/:id/unpublish`
+  - Cloud Image Upload: `POST /api/upload` (and `POST /api/products/upload`)
+- **Frontend Routes (`frontend/app/`)**:
+  - Public: `/` (featured/published products in `<Work />`), `/products`, `/products/[slug]`
+  - Admin: `/admin`, `/admin/login`, `/admin/dashboard`

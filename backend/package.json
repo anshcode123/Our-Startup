@@ -1,0 +1,36 @@
+{
+    "name":  "anshul-dev-backend",
+    "version":  "0.1.0",
+    "private":  true,
+    "description":  "AKIVRO.dev â€” Express + PostgreSQL/Prisma backend server.",
+    "scripts":  {
+                    "dev":  "node server.js",
+                    "start":  "node server.js",
+                    "server":  "node server.js",
+                    "db:generate":  "prisma generate",
+                    "db:migrate":  "prisma migrate dev",
+                    "db:deploy":  "prisma migrate deploy",
+                    "db:seed":  "node prisma/seed.js",
+                    "prisma:generate":  "prisma generate",
+                    "prisma:migrate":  "prisma migrate dev",
+                    "prisma:seed":  "node prisma/seed.js"
+                },
+    "prisma":  {
+                   "seed":  "node prisma/seed.js"
+               },
+    "dependencies":  {
+                         "@prisma/client":  "^5.22.0",
+                         "bcryptjs":  "^3.0.3",
+                         "cloudinary":  "^2.11.0",
+                         "cookie-parser":  "^1.4.7",
+                         "cors":  "^2.8.6",
+                         "dotenv":  "^18.0.4",
+                         "express":  "^5.2.1",
+                         "express-rate-limit":  "^8.7.0",
+                         "jsonwebtoken":  "^9.0.3",
+                         "multer":  "^2.4.0"
+                     },
+    "devDependencies":  {
+                            "prisma":  "^5.22.0"
+                        }
+}

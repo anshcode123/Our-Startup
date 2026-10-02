@@ -2,44 +2,16 @@
   "name": "anshul-dev",
   "version": "0.1.0",
   "private": true,
-  "description": "AKIVRO.dev — marketing website foundation with the reusable Lenis + GSAP ScrollTrigger scroll-animation engine (Phase 1).",
+  "description": "Anshul.dev — separated frontend (Next.js 14) and backend (Express.js + PostgreSQL + Prisma + Cloudinary) repository.",
   "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
-    "lint": "next lint",
-    "server": "node server/server.js",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:deploy": "prisma migrate deploy",
-    "db:seed": "node prisma/seed.js"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.22.0",
-    "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.11.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.6",
-    "dotenv": "^18.0.4",
-    "express": "^5.2.1",
-    "express-rate-limit": "^8.7.0",
-    "gsap": "^3.12.5",
-    "jsonwebtoken": "^9.0.3",
-    "lenis": "^1.1.18",
-    "multer": "^2.4.0",
-    "next": "^14.2.15",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.15",
-    "postcss": "^8.4.47",
-    "prisma": "^5.22.0",
-    "tailwindcss": "^3.4.13"
+    "frontend": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:start": "npm --prefix frontend run start",
+    "frontend:lint": "npm --prefix frontend run lint",
+    "backend": "npm --prefix backend run dev",
+    "backend:start": "npm --prefix backend run start",
+    "prisma:generate": "npm --prefix backend run prisma:generate",
+    "prisma:migrate": "npm --prefix backend run prisma:migrate",
+    "prisma:seed": "npm --prefix backend run prisma:seed"
   }
 }
