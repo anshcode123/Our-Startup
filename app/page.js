@@ -10,8 +10,6 @@ import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import { CinematicStory, FinalCTA } from "@/components/story";
 
-export const dynamic = "force-dynamic";
-
 export default function Home() {
   return (
     <>

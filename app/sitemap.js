@@ -1,21 +1,12 @@
 import { SITE_URL } from "@/lib/siteConfig";
-import { getPublishedProducts } from "@/lib/products";
 
 /**
- * Generates /sitemap.xml. Includes the homepage, /products, and dynamic
- * /products/[slug] pages for PUBLISHED products only. Unpublished/draft
- * products and /admin or /demo routes are never exposed to search engines.
+ * Generates /sitemap.xml. Only one real public page exists on this
+ * marketing site — the homepage, which contains every section (Services,
+ * Work, Process, About, Contact, etc. are anchors within it, not separate
+ * routes). /demo is intentionally left out — see app/robots.js.
  */
-export default async function sitemap() {
-  const publishedProducts = await getPublishedProducts();
-
-  const productEntries = publishedProducts.map((product) => ({
-    url: `${SITE_URL}/products/${product.slug}`,
-    lastModified: product.updatedAt || new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
-
+export default function sitemap() {
   return [
     {
       url: SITE_URL,
@@ -23,12 +14,5 @@ export default async function sitemap() {
       changeFrequency: "monthly",
       priority: 1,
     },
-    {
-      url: `${SITE_URL}/products`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    ...productEntries,
   ];
 }
