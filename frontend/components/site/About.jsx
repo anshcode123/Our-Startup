@@ -12,7 +12,7 @@ export default function About() {
           We build digital products.
         </h2>
         <p className="mt-6 text-lg leading-relaxed text-white/60">
-          AKIVRO.dev is a software development studio focused on designing and
+          Anshul.dev is a software development studio focused on designing and
           building modern websites, mobile applications, and custom software for
           businesses ready to move forward.
         </p>

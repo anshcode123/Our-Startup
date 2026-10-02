@@ -62,7 +62,7 @@ export default function WhyUs() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-xl">
           <p className="text-xs uppercase tracking-[0.2em] text-white/50">
-            Why AKIVRO.dev
+            Why Anshul.dev
           </p>
           <h2 className="mt-3 text-4xl text-white sm:text-5xl">
             Built with purpose.

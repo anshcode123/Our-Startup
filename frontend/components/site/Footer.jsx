@@ -68,7 +68,7 @@ export default function Footer() {
 
       {/* new Date() at render time can legitimately differ between when this
           page was statically generated/server-rendered and when the
-          browser hydrates it (e.g. built in December, viewed in January) —
+          browser hydrates it (e.g. built in December, viewed in January) â€”
           suppressHydrationWarning is React/Next's documented escape hatch
           for exactly this "correct on the client, may lag on the server"
           case, rather than a way to silence a real bug. */}
@@ -76,7 +76,7 @@ export default function Footer() {
         className="mx-auto mt-12 max-w-6xl text-xs text-white/50"
         suppressHydrationWarning
       >
-        © {new Date().getFullYear()} AKIVRO.dev
+        Â© {new Date().getFullYear()} Anshul.dev
       </p>
     </footer>
   );

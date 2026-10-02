@@ -7,7 +7,7 @@ import MagneticButton from "@/components/ui/MagneticButton";
 
 /**
  * The real homepage hero. Sits directly above <CinematicStage> in normal
- * document flow — scrolling out of the hero and into the pinned story
+ * document flow â€” scrolling out of the hero and into the pinned story
  * happens as one continuous scroll, with no hard cut. To reinforce that,
  * the hero's own text gently fades and drifts up as it scrolls toward the
  * top of the viewport instead of just disappearing abruptly.
@@ -49,7 +49,7 @@ export default function Hero() {
       <div className="bg-accent-glow bg-noise pointer-events-none absolute inset-0" />
 
       <p className="hero-fade relative text-xs uppercase tracking-[0.2em] text-white/50">
-        AKIVRO.dev — software development studio
+        Anshul.dev â€” software development studio
       </p>
 
       <h1 className="hero-fade relative max-w-3xl text-5xl leading-[1.05] text-white sm:text-6xl md:text-7xl">
@@ -72,7 +72,7 @@ export default function Hero() {
             aria-hidden="true"
             className="transition-transform group-hover:translate-x-0.5"
           >
-            →
+            â†’
           </span>
         </MagneticButton>
         <a

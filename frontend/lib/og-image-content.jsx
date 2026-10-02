@@ -1,7 +1,7 @@
 /**
  * Shared visual for the generated social-preview image (see
  * app/opengraph-image.jsx and app/twitter-image.jsx). Rendered by Next's
- * built-in `next/og` ImageResponse — plain flexbox/inline-style JSX only
+ * built-in `next/og` ImageResponse â€” plain flexbox/inline-style JSX only
  * (that renderer doesn't support arbitrary CSS), and deliberately just the
  * real brand name and tagline. No client logos, numbers, or claims.
  */
@@ -50,7 +50,7 @@ export function OgImageContent() {
           letterSpacing: -2,
         }}
       >
-        AKIVRO.dev
+        Anshul.dev
       </div>
 
       <div

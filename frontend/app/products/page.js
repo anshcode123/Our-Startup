@@ -9,19 +9,26 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: {
-    absolute: "Products | Anshul.dev",
+    absolute: "Products — Anshul.dev",
   },
   description:
-    "Explore digital products, web applications, mobile apps, and software built by Anshul.dev.",
+    "Explore digital products, web applications, mobile apps, custom software, and SaaS platforms built by Anshul.dev.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
-    title: "Products | Anshul.dev",
+    title: "Products — Anshul.dev",
     description:
-      "Explore digital products, web applications, mobile apps, and software built by Anshul.dev.",
+      "Explore digital products, web applications, mobile apps, custom software, and SaaS platforms built by Anshul.dev.",
     url: `${SITE_URL}/products`,
     type: "website",
+    siteName: "Anshul.dev",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Products — Anshul.dev",
+    description:
+      "Explore digital products, web applications, mobile apps, custom software, and SaaS platforms built by Anshul.dev.",
   },
 };
 
@@ -65,7 +72,7 @@ export default async function ProductsPage() {
     <div className="flex min-h-screen flex-col bg-ink text-paper">
       <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/85 backdrop-blur-md">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" aria-label="AKIVRO.dev ΓÇö home">
+          <Link href="/" aria-label="Anshul.dev Î“Ã‡Ã¶ home">
             <Logo className="text-sm" />
           </Link>
 
@@ -74,13 +81,13 @@ export default async function ProductsPage() {
               href="/"
               className="link-underline text-white/60 transition-colors hover:text-white"
             >
-              ΓåÉ Back to home
+              Î“Ã¥Ã‰ Back to home
             </Link>
             <Link
               href="/#contact"
               className="hidden items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black sm:inline-flex"
             >
-              Let&apos;s Talk ΓåÆ
+              Let&apos;s Talk Î“Ã¥Ã†
             </Link>
           </div>
         </nav>
@@ -126,7 +133,7 @@ export default async function ProductsPage() {
                     <div className="relative mb-6 aspect-video w-full overflow-hidden rounded-lg border border-white/5 bg-black/40">
                       <ProductImage
                         src={previewImage}
-                        alt={`${product.name} ΓÇö ${product.category}`}
+                        alt={`${product.name} Î“Ã‡Ã¶ ${product.category}`}
                       />
                       {product.featured && (
                         <span className="absolute right-3 top-3 rounded-full border border-accent/40 bg-black/75 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-accent backdrop-blur-sm">
@@ -181,7 +188,7 @@ export default async function ProductsPage() {
                         aria-hidden="true"
                         className="transition-transform group-hover:translate-x-0.5"
                       >
-                        ΓåÆ
+                        Î“Ã¥Ã†
                       </span>
                     </span>
                   </Link>

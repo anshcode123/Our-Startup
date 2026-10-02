@@ -262,6 +262,25 @@ function validateProductInput(body = {}, { partial = false } = {}) {
     data.featured = Boolean(body.featured);
   }
 
+  if (!partial || body.seoTitle !== undefined) {
+    data.seoTitle = sanitizeText(body.seoTitle ?? "", 160) || null;
+  }
+
+  if (!partial || body.seoDescription !== undefined) {
+    data.seoDescription = sanitizeText(body.seoDescription ?? "", 320) || null;
+  }
+
+  if (!partial || body.ogImage !== undefined) {
+    const check = sanitizeAndValidateUrl(body.ogImage, "OG Image URL", {
+      allowImageUrl: true,
+    });
+    if (!check.valid) {
+      errors.push(check.error);
+    } else {
+      data.ogImage = check.url;
+    }
+  }
+
   if (errors.length > 0) {
     return {
       valid: false,
