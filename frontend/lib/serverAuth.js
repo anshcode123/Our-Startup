@@ -103,3 +103,17 @@ export async function proxyBackendRequest(
     };
   }
 }
+
+export async function verifyAdminSession(request) {
+  try {
+    const { status, data } = await proxyBackendRequest(request, "/api/auth/me", {
+      method: "GET",
+    });
+    if (status === 200 && data?.user) {
+      return data.user;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}

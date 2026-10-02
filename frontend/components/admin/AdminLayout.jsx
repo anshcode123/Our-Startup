@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/site/Logo";
+import ThemeToggle from "@/components/admin/ThemeToggle";
 
 export default function AdminLayout({ user, children }) {
   const router = useRouter();
@@ -24,8 +25,8 @@ export default function AdminLayout({ user, children }) {
   }
 
   return (
-    <div className="min-h-screen bg-ink text-paper">
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/90 backdrop-blur-md">
+    <div className="min-h-screen bg-ink text-paper transition-colors duration-200">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/90 backdrop-blur-md transition-colors duration-200">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-3">
             <Link href="/admin/dashboard" className="flex items-center gap-2.5">
@@ -37,6 +38,8 @@ export default function AdminLayout({ user, children }) {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+            <ThemeToggle />
+
             <Link
               href="/products"
               className="text-xs text-white/60 transition-colors hover:text-white"

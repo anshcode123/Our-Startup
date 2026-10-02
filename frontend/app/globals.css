@@ -2,32 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Design tokens — the whole palette runs through these so retuning the
-     one accent color (or the background/text values) never means hunting
-     through component files. See tailwind.config.js for how these map to
-     the `ink` / `paper` / `line` / `muted` / `accent` utility classes.
+:root,
+[data-theme="dark"],
+.dark {
+  /* Specification design tokens */
+  --background: #0a0a0a;
+  --foreground: #f5f5f3;
+  --surface: #141414;
+  --surface-secondary: #1c1c1c;
+  --border: rgba(245, 245, 243, 0.12);
+  --muted: #9a9a97;
+  --accent: #e3b168;
 
-     --color-accent-rgb is the same color as --color-accent, expressed as
-     space-separated R G B channels — Tailwind's `bg-accent/30`-style
-     opacity modifiers need that channel form to build `rgb(r g b / a)`;
-     a plain `var(--color-accent)` reference can't be decomposed into
-     channels, so opacity modifiers would silently no-op without this. */
-  --color-bg: #0a0a0a;
-  --color-text: #f5f5f3;
-  --color-muted: #9a9a97;
-  --color-border: rgba(245, 245, 243, 0.12);
-  --color-accent: #e3b168; /* single brand accent — warm, premium, not neon */
-  --color-accent-rgb: 227 177 104; /* keep in sync with --color-accent above */
+  /* Mapped project design tokens */
+  --color-bg: var(--background);
+  --color-text: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-rgb: 227 177 104;
   --color-accent-contrast: #0a0a0a;
+
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-grid: rgba(255, 255, 255, 0.04);
+  --color-nav-bg: rgba(10, 10, 10, 0.85);
+
+  color-scheme: dark;
+}
+
+[data-theme="light"],
+.light {
+  /* Specification design tokens */
+  --background: #fbfaf8; /* warm refined alabaster */
+  --foreground: #141413; /* deep charcoal ink */
+  --surface: #ffffff;
+  --surface-secondary: #f3f1ec;
+  --border: rgba(20, 20, 19, 0.12);
+  --muted: #696863;
+  --accent: #b57e24; /* rich deep gold with 4.8:1 contrast on light stone */
+
+  /* Mapped project design tokens */
+  --color-bg: var(--background);
+  --color-text: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-rgb: 181 126 36;
+  --color-accent-contrast: #ffffff;
+
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-grid: rgba(20, 20, 19, 0.04);
+  --color-nav-bg: rgba(251, 250, 248, 0.88);
+
+  color-scheme: light;
 }
 
 html,
 body {
-  /* Prevent any scroll-driven transform from ever introducing a horizontal
-     scrollbar. */
   overflow-x: hidden;
   background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
@@ -36,7 +73,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Subtle background grid texture used behind the dark hero/demo sections. */
+/* Subtle background grid texture used behind the hero/demo sections. */
 .bg-grid {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
@@ -44,9 +81,7 @@ body {
   background-size: 48px 48px;
 }
 
-/* Extremely faint grain, layered on top of bg-grid/gradients in a few
-   spots so large dark areas don't read as flat/banded. Kept subtle on
-   purpose — see instruction to avoid a "video game" background. */
+/* Extremely faint grain */
 .bg-noise {
   position: relative;
 }
@@ -59,8 +94,7 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* A soft radial glow using the accent color, for the couple of moments
-   (hero, final CTA) that deserve a little more presence. */
+/* A soft radial glow using the accent color */
 .bg-accent-glow {
   background-image: radial-gradient(
     circle at 50% 30%,
@@ -69,9 +103,7 @@ body {
   );
 }
 
-/* Reflection/sheen overlay for device screens (laptop, phone, browser) —
-   a cheap way to make a flat CSS "screen" read as glass. Purely
-   decorative, so it's aria-hidden wherever it's used. */
+/* Reflection/sheen overlay for device screens */
 .device-reflection {
   background: linear-gradient(
     115deg,
@@ -81,7 +113,7 @@ body {
   );
 }
 
-/* Underline reveal used by nav/footer links instead of a hard color swap. */
+/* Underline reveal used by nav/footer links */
 .link-underline {
   position: relative;
   text-decoration: none;
@@ -106,9 +138,7 @@ body {
   }
 }
 
-/* Custom cursor accent — a small dot that trails the real pointer. The
-   native cursor is never hidden; this only adds a subtle extra glow.
-   Positioned via inline transform from CustomCursor.jsx, desktop-only. */
+/* Custom cursor accent */
 .cursor-dot {
   position: fixed;
   top: 0;
@@ -124,17 +154,12 @@ body {
   will-change: transform;
 }
 
-/* Blinking caret on the code panel's last line — a plain CSS animation
-   since it's decorative and continuous, not scroll-linked. Only runs when
-   the visitor hasn't asked for reduced motion. */
+/* Blinking caret on code panel */
 @media (prefers-reduced-motion: no-preference) {
   .story-code-caret {
     animation: story-caret-blink 1s steps(1) infinite;
   }
 
-  /* A very slow, small hover-in-place drift on the closing rocket — not
-     the rocket's scroll-driven rise, just a quiet "still aloft" cue while
-     the visitor reads the final CTA. */
   .story-rocket-body {
     animation: story-rocket-float 4.5s ease-in-out infinite;
   }
@@ -152,8 +177,6 @@ body {
   }
 }
 
-/* Respect reduced-motion at the CSS level too, for anything not driven by
-   GSAP (e.g. hover/focus transitions on interactive elements). */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -165,3 +188,159 @@ body {
   }
 }
 
+/* ==================================================
+   LIGHT THEME ADAPTATION
+   ================================================== */
+[data-theme="light"] {
+  /* Text opacity classes */
+  .text-white {
+    color: var(--color-text) !important;
+  }
+  .text-white\/90 {
+    color: rgba(20, 20, 19, 0.9) !important;
+  }
+  .text-white\/80 {
+    color: rgba(20, 20, 19, 0.8) !important;
+  }
+  .text-white\/70 {
+    color: rgba(20, 20, 19, 0.7) !important;
+  }
+  .text-white\/60 {
+    color: rgba(20, 20, 19, 0.6) !important;
+  }
+  .text-white\/50 {
+    color: rgba(20, 20, 19, 0.52) !important;
+  }
+  .text-white\/40 {
+    color: rgba(20, 20, 19, 0.42) !important;
+  }
+  .text-white\/30 {
+    color: rgba(20, 20, 19, 0.32) !important;
+  }
+  .text-white\/20 {
+    color: rgba(20, 20, 19, 0.22) !important;
+  }
+  .text-white\/10 {
+    color: rgba(20, 20, 19, 0.12) !important;
+  }
+
+  /* Borders */
+  .border-white\/5 {
+    border-color: rgba(20, 20, 19, 0.06) !important;
+  }
+  .border-white\/10 {
+    border-color: rgba(20, 20, 19, 0.1) !important;
+  }
+  .border-white\/15 {
+    border-color: rgba(20, 20, 19, 0.15) !important;
+  }
+  .border-white\/20 {
+    border-color: rgba(20, 20, 19, 0.2) !important;
+  }
+  .border-white\/30 {
+    border-color: rgba(20, 20, 19, 0.3) !important;
+  }
+  .border-white\/40 {
+    border-color: rgba(20, 20, 19, 0.4) !important;
+  }
+
+  /* Surface backgrounds & subtle cards */
+  .bg-white\/\[0\.01\] {
+    background-color: rgba(20, 20, 19, 0.02) !important;
+  }
+  .bg-white\/\[0\.02\] {
+    background-color: rgba(20, 20, 19, 0.03) !important;
+  }
+  .bg-white\/\[0\.03\] {
+    background-color: rgba(20, 20, 19, 0.04) !important;
+  }
+  .bg-white\/\[0\.04\] {
+    background-color: rgba(20, 20, 19, 0.05) !important;
+  }
+  .bg-white\/5 {
+    background-color: rgba(20, 20, 19, 0.04) !important;
+  }
+  .bg-white\/10 {
+    background-color: rgba(20, 20, 19, 0.07) !important;
+  }
+  .bg-white\/20 {
+    background-color: rgba(20, 20, 19, 0.12) !important;
+  }
+
+  /* Hover states */
+  .hover\:bg-white\/10:hover {
+    background-color: rgba(20, 20, 19, 0.08) !important;
+  }
+  .hover\:bg-white\/5:hover {
+    background-color: rgba(20, 20, 19, 0.05) !important;
+  }
+  .hover\:text-white:hover {
+    color: var(--color-text) !important;
+  }
+  .hover\:border-white\/30:hover {
+    border-color: rgba(20, 20, 19, 0.3) !important;
+  }
+
+  /* Solid white primary buttons become solid black in light theme */
+  button.bg-white,
+  a.bg-white {
+    background-color: #141413 !important;
+    color: #ffffff !important;
+  }
+  button.bg-white:hover,
+  a.bg-white:hover {
+    background-color: var(--color-accent) !important;
+    color: #ffffff !important;
+  }
+
+  /* Inverted button hover (e.g. Navigation "Let's Talk" button) */
+  .hover\:bg-white:hover {
+    background-color: #141413 !important;
+    color: #ffffff !important;
+  }
+
+  /* Inputs and form elements */
+  input,
+  textarea,
+  select {
+    color: var(--color-text) !important;
+    background-color: #ffffff !important;
+    border-color: rgba(20, 20, 19, 0.2) !important;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(20, 20, 19, 0.4) !important;
+  }
+
+  /* Modal backdrops & surface */
+  .bg-\[\#111111\] {
+    background-color: #ffffff !important;
+    border-color: rgba(20, 20, 19, 0.15) !important;
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Background Grid texture in light theme */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(20, 20, 19, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(20, 20, 19, 0.04) 1px, transparent 1px) !important;
+  }
+
+  /* Sticky navigation blur in light theme */
+  header.bg-ink\/80,
+  header.bg-ink\/90 {
+    background-color: rgba(251, 250, 248, 0.88) !important;
+    border-color: rgba(20, 20, 19, 0.1) !important;
+  }
+
+  /* Table styling */
+  table th {
+    color: rgba(20, 20, 19, 0.6) !important;
+  }
+  table tr:hover {
+    background-color: rgba(20, 20, 19, 0.02) !important;
+  }
+  .divide-white\/10 > :not([hidden]) ~ :not([hidden]) {
+    border-color: rgba(20, 20, 19, 0.08) !important;
+  }
+}

@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { SmoothScroll, ScrollProgress } from "@/components/scroll";
 import CustomCursor from "@/components/ui/CustomCursor";
+import ThemeProvider from "@/components/theme/ThemeProvider";
 import { SITE_URL } from "@/lib/siteConfig";
 
 const inter = Inter({
@@ -30,27 +31,32 @@ export const metadata = {
     url: SITE_URL,
     siteName: "AKIVRO.dev",
     type: "website",
-    // Image itself comes from app/opengraph-image.jsx (Next's file-based
-    // convention adds it automatically) — a generated brand/tagline card,
-    // not a fake screenshot or stats graphic.
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    // Image comes from app/twitter-image.jsx, same convention as above.
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("anshul_theme")||"dark";document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
-        <SmoothScroll>
-          <ScrollProgress />
-          <CustomCursor />
-          {children}
-        </SmoothScroll>
+        <ThemeProvider>
+          <SmoothScroll>
+            <ScrollProgress />
+            <CustomCursor />
+            {children}
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

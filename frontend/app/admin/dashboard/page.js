@@ -5,6 +5,7 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import ProtectedRoute from "@/components/admin/ProtectedRoute";
 import ProductForm from "@/components/admin/ProductForm";
 import ProductTable from "@/components/admin/ProductTable";
+import ThemeToggle from "@/components/admin/ThemeToggle";
 
 function DashboardContent({ user }) {
   const [products, setProducts] = useState([]);
@@ -229,15 +230,18 @@ function DashboardContent({ user }) {
           </h1>
         </div>
 
-        {!editorMode && (
-          <button
-            type="button"
-            onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-medium text-black transition-colors hover:bg-accent"
-          >
-            + Add Product
-          </button>
-        )}
+        <div className="flex items-center gap-3">
+          <ThemeToggle showLabel className="hidden sm:inline-flex" />
+          {!editorMode && (
+            <button
+              type="button"
+              onClick={handleOpenCreate}
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-medium text-black transition-colors hover:bg-accent"
+            >
+              + Add Product
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -265,7 +269,7 @@ function DashboardContent({ user }) {
             onClick={() => setFeedbackBanner("")}
             className="text-emerald-200/70 hover:text-white"
           >
-            Γ£ò
+            Î“Â£Ã²
           </button>
         </div>
       )}
